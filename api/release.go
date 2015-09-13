@@ -15,7 +15,7 @@ func (a *API) getRelease(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	slug, ver := parseModuleName(ps.ByName("module"))
 
 	// Instantiate the release
-	result := release.New(slug, ver, "/Users/jolshevski/Desktop")
+	result := release.New(slug, ver, a.Config["modulepath"])
 
 	// Return 404 if the release was not found
 	if result == nil {
