@@ -1,7 +1,10 @@
 package release
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"github.com/jolshevski/chester/metadata"
+	"io/ioutil"
 	"path/filepath"
 )
 
@@ -10,6 +13,8 @@ import (
 type Release struct {
 	LocalPath string
 	Metadata  metadata.Metadata
+	File_uri  string
+	File_md5  string
 }
 
 // New instantiates a new release object
@@ -31,7 +36,15 @@ func (r *Release) Tarball() string {
 // properties given the tarball on
 // disk.
 func (r *Release) FromDisk() (err error) {
+	// Get the metadata object from metadata.json
 	m, err := metadata.FromRelease(r)
 	r.Metadata = *m
+
+	// Get the tarball's MD5 checksum
+	raw, _ := ioutil.ReadFile(r.LocalPath)
+	checker := md5.New()
+	checker.Write(raw)
+	r.File_md5 = hex.EncodeToString(checker.Sum(nil))
+
 	return
 }
