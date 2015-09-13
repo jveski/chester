@@ -16,6 +16,10 @@ func TestNew(t *testing.T) {
 	if New("module", "1.2.3", "../test_fixtures").Metadata.Version != "1.2.3" {
 		t.Errorf("Expected New to return the given module version")
 	}
+
+	if New("doesn", "exist", "../test_fixtures") != nil {
+		t.Errorf("Expected New to return nil for a non-existent module")
+	}
 }
 
 func TestFromDisk(t *testing.T) {
