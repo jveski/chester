@@ -13,8 +13,8 @@ type Module struct {
 // New instantiates a new module object
 // given the module's name and the path
 // containing module tarballs.
-func New(q string, modulepath string) *Module {
-	path, _ := filepath.Glob(modulepath + "/" + q + "-*.tar.gz")
+func New(q string, v string, modulepath string) *Module {
+	path, _ := filepath.Glob(modulepath + "/" + q + "-" + v + ".tar.gz")
 
 	return &Module{Path: path[0]}
 }
