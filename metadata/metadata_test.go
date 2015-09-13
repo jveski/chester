@@ -4,8 +4,15 @@ import (
 	"testing"
 )
 
-func TestFromTarball(t *testing.T) {
-	subject, _ := FromTarball("../test_fixtures/module.tar.gz")
+type stubModule struct{}
+
+func (s *stubModule) Tarball() string {
+	return "../test_fixtures/module.tar.gz"
+}
+
+func TestFromModule(t *testing.T) {
+	module := &stubModule{}
+	subject, _ := FromModule(module)
 
 	expectation := &Metadata{
 		Name:    "stubuser-stubmodule",
