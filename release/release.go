@@ -19,8 +19,11 @@ type Release struct {
 // New instantiates a new release object
 // given the module's name, version and
 // the path containing module tarballs.
-func New(q string, v string, modulepath string) *Release {
-	return &Release{LocalPath: modulepath + "/" + q + "-" + v + ".tar.gz"}
+func New(name string, version string, modulepath string) *Release {
+	return &Release{
+		LocalPath: modulepath + "/" + name + "-" + version + ".tar.gz",
+		Metadata:  metadata.Metadata{Name: name, Version: version},
+	}
 }
 
 // Tarball returns the path to the

@@ -8,6 +8,14 @@ func TestNew(t *testing.T) {
 	if New("module", "1.2.3", "../test_fixtures").LocalPath != "../test_fixtures/module-1.2.3.tar.gz" {
 		t.Errorf("Expected New to return the correct path to the tarball")
 	}
+
+	if New("module", "1.2.3", "../test_fixtures").Metadata.Name != "module" {
+		t.Errorf("Expected New to return the given module name")
+	}
+
+	if New("module", "1.2.3", "../test_fixtures").Metadata.Version != "1.2.3" {
+		t.Errorf("Expected New to return the given module version")
+	}
 }
 
 func TestFromDisk(t *testing.T) {
