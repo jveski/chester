@@ -7,7 +7,7 @@ import (
 type stubModule struct{}
 
 func (s *stubModule) Tarball() string {
-	return "../test_fixtures/module.tar.gz"
+	return "../test_fixtures/module-1.2.3.tar.gz"
 }
 
 func TestFromModule(t *testing.T) {

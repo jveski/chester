@@ -14,7 +14,7 @@ type Module struct {
 // given the module's name and the path
 // containing module tarballs.
 func New(q string, modulepath string) *Module {
-	path, _ := filepath.Glob(modulepath + "/" + q + ".tar.gz")
+	path, _ := filepath.Glob(modulepath + "/" + q + "-*.tar.gz")
 
 	return &Module{Path: path[0]}
 }
