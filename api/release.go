@@ -10,6 +10,7 @@ import (
 
 func (a *API) getRelease(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	a.Logger.Printf("Request for %v received from %v", r.RequestURI, r.Host)
+	w.Header().Set("Content-Type", "application/json")
 
 	// Parse the module's slug and version
 	slug, ver := parseModuleName(ps.ByName("module"))
@@ -26,11 +27,14 @@ func (a *API) getRelease(w http.ResponseWriter, r *http.Request, ps httprouter.P
 
 	// If we've made it this far, load the release
 	// from disk and return it as JSON
-	result.FromDisk()
-	a.Logger.Printf("%v-%v was successfully loaded from disk", slug, ver)
+	if err := result.FromDisk(); err != nil {
+		a.Logger.Printf("An error occurred while loading %v-%v from disk: %v", slug, ver, err)
+		w.WriteHeader(500)
+	} else {
+		a.Logger.Printf("%v-%v was successfully loaded from disk", slug, ver)
+	}
 
 	body, _ := json.Marshal(result)
-	w.Header().Set("Content-Type", "application/json")
 	w.Write(body)
 }
 
