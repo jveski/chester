@@ -1,6 +1,7 @@
 package release
 
 import (
+	"github.com/jolshevski/chester/metadata"
 	"path/filepath"
 )
 
@@ -8,6 +9,7 @@ import (
 // module release on disk.
 type Release struct {
 	LocalPath string
+	Metadata  metadata.Metadata
 }
 
 // New instantiates a new release object
@@ -23,4 +25,13 @@ func New(q string, v string, modulepath string) *Release {
 // release's tarball on disk.
 func (r *Release) Tarball() string {
 	return r.LocalPath
+}
+
+// FromDisk populates the applicable
+// properties given the tarball on
+// disk.
+func (r *Release) FromDisk() (err error) {
+	m, err := metadata.FromRelease(r)
+	r.Metadata = *m
+	return
 }
