@@ -7,3 +7,6 @@ go:
 
 script:
   - make test
+
+install:
+  - make deps
