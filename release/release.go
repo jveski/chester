@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"github.com/jolshevski/chester/metadata"
 	"io/ioutil"
-	"path/filepath"
 )
 
 // Release represents a specific Puppet
@@ -21,9 +20,7 @@ type Release struct {
 // given the module's name, version and
 // the path containing module tarballs.
 func New(q string, v string, modulepath string) *Release {
-	path, _ := filepath.Glob(modulepath + "/" + q + "-" + v + ".tar.gz")
-
-	return &Release{LocalPath: path[0]}
+	return &Release{LocalPath: modulepath + "/" + q + "-" + v + ".tar.gz"}
 }
 
 // Tarball returns the path to the
