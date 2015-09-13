@@ -40,19 +40,19 @@ type OS struct {
 	Operatingsystemrelease []string
 }
 
-type module interface {
+type release interface {
 	Tarball() string
 }
 
-// FromModule takes a module object and returns
+// FromRelease takes a release object and returns
 // an instance of Metadata containing the values
 // found in the module's metadata.json.
 // An error will be returned if an issue is encountered
 // while loading the file, but an empty Metadata
 // object will be returned if no metadata.json
 // was found.
-func FromModule(m module) (*Metadata, error) {
-	path := m.Tarball()
+func FromRelease(r release) (*Metadata, error) {
+	path := r.Tarball()
 	rawFile, err := os.Open(path)
 
 	if err != nil {

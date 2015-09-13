@@ -4,15 +4,15 @@ import (
 	"testing"
 )
 
-type stubModule struct{}
+type stubRelease struct{}
 
-func (s *stubModule) Tarball() string {
+func (s *stubRelease) Tarball() string {
 	return "../test_fixtures/module-1.2.3.tar.gz"
 }
 
-func TestFromModule(t *testing.T) {
-	module := &stubModule{}
-	subject, _ := FromModule(module)
+func TestFromRelease(t *testing.T) {
+	release := &stubRelease{}
+	subject, _ := FromRelease(release)
 
 	expectation := &Metadata{
 		Name:    "stubuser-stubmodule",
