@@ -27,12 +27,12 @@ func (a *API) getReleases(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		a.Logger.Printf("Returning %v releases for %v", len(response.Results), q[0])
+
+		body, _ := json.Marshal(response)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(body)
 	} else {
 		a.returnError("Invalid query", w)
-		return
 	}
-
-	body, _ := json.Marshal(response)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(body)
 }
