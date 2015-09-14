@@ -14,26 +14,9 @@ go run main.go -modulepath acceptance/v3/files &
 
 
 ###########################
-# Configure nginx
-###########################
-cat > "/etc/nginx/conf.d/chester.conf" <<CONFIG
-server {
-        listen 8081;
-        server_name chester;
-
-        root `pwd`/acceptance;
-
-        location /v3/release {
-                proxy_pass http://localhost:8080;
-        }
-}
-CONFIG
-
-
-###########################
 # Start nginx
 ###########################
-service nginx restart
+/usr/sbin/nginx -p acceptance -c nginx.conf
 
 
 ###########################
