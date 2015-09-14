@@ -7,7 +7,7 @@ wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
 sudo dpkg -i puppetlabs-release-precise.deb
 sudo apt-get update
 sudo apt-get install puppet -y
-sudo apt-get install nginx -y
+sudo apt-get install nginx=1.1.19 -y
 
 ###########################
 # Get a random module from the forge
