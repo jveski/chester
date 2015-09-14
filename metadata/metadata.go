@@ -13,16 +13,16 @@ import (
 // Metadata is the parent object contained within
 // a Puppet module's metadata.json.
 type Metadata struct {
-	Name         string
-	Version      string
-	Dependencies []Dependency
+	Name         string       `json:"name"`
+	Version      string       `json:"version"`
+	Dependencies []Dependency `json:"dependencies"`
 }
 
 // Dependency represents an entry under the
 // dependencies key of the Metadata type.
 type Dependency struct {
-	Name                string
-	Version_requirement string
+	Name                string `json:"name"`
+	Version_requirement string `json:"version_requirement"`
 }
 
 type release interface {

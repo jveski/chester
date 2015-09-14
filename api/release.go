@@ -7,8 +7,8 @@ import (
 )
 
 type releaseReponse struct {
-	Pagination struct{} //No pagination for now
-	Results    []*release.Release
+	Pagination struct{}           `json:"pagination"`
+	Results    []*release.Release `json:"results"`
 }
 
 func (a *API) getReleases(w http.ResponseWriter, r *http.Request) {

@@ -17,7 +17,7 @@ type API struct {
 
 // Error models a forge error response object.
 type Error struct {
-	Errors []string
+	Errors []string `json:"errors"`
 }
 
 // New returns a new instance of the API.

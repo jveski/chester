@@ -12,9 +12,9 @@ import (
 // module release on disk.
 type Release struct {
 	localPath string
-	Metadata  metadata.Metadata
-	File_uri  string
-	File_md5  string
+	Metadata  metadata.Metadata `json:"metadata"`
+	File_uri  string            `json:"file_uri"`
+	File_md5  string            `json:"file_md5"`
 }
 
 // New instantiates a new release object
