@@ -14,6 +14,8 @@ sudo apt-get install nginx -y
 ###########################
 mkdir -p acceptance/v3/files
 curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.5.0.tar.gz" -o "acceptance/v3/files/puppetlabs-apache-1.5.0.tar.gz"
+curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.9.0.tar.gz" -o "acceptance/v3/files/puppetlabs-stdlib-4.9.0.tar.gz"
+curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-concat-1.2.4.tar.gz" -o "acceptance/v3/files/puppetlabs-concat-1.2.4.tar.gz"
 curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.6.0.tar.gz" -o "acceptance/v3/files/puppetlabs-apache-1.6.0.tar.gz"
 
 
