@@ -22,7 +22,7 @@ curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.6.0.tar.gz" -
 ###########################
 # Start chester
 ###########################
-go run main.go -modulepath acceptance/v3/files &
+go run main.go -modulepath acceptance/v3/files -fileurl http://localhost:8081/v3/files &
 
 
 ###########################
