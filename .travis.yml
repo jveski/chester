@@ -7,3 +7,10 @@ go:
 
 script:
   - make test
+  - make acceptance
+
+addons:
+  apt:
+    packages:
+      - nginx-0.7.67
+      - puppet
