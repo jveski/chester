@@ -8,12 +8,16 @@ import (
 // of Releases based upon queries given from the API.
 type Factory struct {
 	modulepath string
+	fileurl    string
 }
 
 // NewFactory returns a new instance of Factory
 // with the given modulepath.
-func NewFactory(modulepath string) *Factory {
-	return &Factory{modulepath: modulepath}
+func NewFactory(modulepath string, fileurl string) *Factory {
+	return &Factory{
+		modulepath: modulepath,
+		fileurl:    fileurl,
+	}
 }
 
 // AllForModule returns an instance of Release for each
@@ -31,6 +35,7 @@ func (f *Factory) AllForModule(slug string) (releases []*Release, err error) {
 	for _, tarball := range tarballs {
 		release := New(tarball)
 		release.FromDisk()
+		release.File_uri = f.fileurl + "/" + release.Slug() + ".tar.gz"
 		releases = append(releases, release)
 	}
 

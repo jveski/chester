@@ -13,7 +13,7 @@ type releaseReponse struct {
 
 func (a *API) getReleases(w http.ResponseWriter, r *http.Request) {
 	response := &releaseReponse{}
-	factory := release.NewFactory(a.Config["modulepath"])
+	factory := release.NewFactory(a.Config["modulepath"], a.Config["fileurl"])
 
 	if q := r.URL.Query()["module"]; q != nil {
 		var err error

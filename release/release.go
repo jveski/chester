@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"github.com/jolshevski/chester/metadata"
 	"io/ioutil"
+	"strings"
 )
 
 // Release represents a specific Puppet
@@ -43,4 +44,12 @@ func (r *Release) FromDisk() (err error) {
 	r.File_md5 = hex.EncodeToString(checker.Sum(nil))
 
 	return
+}
+
+// Slug will return the author-module-version
+// formatted slug. Any slashes will be replaced
+// with dashes.
+func (r *Release) Slug() string {
+	name := strings.Replace(r.Metadata.Name, "/", "-", -1)
+	return name + "-" + r.Metadata.Version
 }
