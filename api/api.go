@@ -38,7 +38,7 @@ func (a *API) Listen() {
 
 	http.HandleFunc("/v3/releases", a.getReleases)
 
-	log.Fatal(http.ListenAndServe(a.Config["binding"], nil))
+	a.Logger.Fatal(http.ListenAndServe(a.Config["binding"], nil))
 }
 
 func (a *API) validateConfig() error {
