@@ -30,8 +30,8 @@ go run main.go -modulepath acceptance/v3/files &
 ###########################
 # Start nginx
 ###########################
+sudo chmod 777 /var/lib/nginx
 /usr/sbin/nginx -v
-sudo chmod 777 /var/lib/nginx/body
 /usr/sbin/nginx -p acceptance -c nginx.conf &
 
 
