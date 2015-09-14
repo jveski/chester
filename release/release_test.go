@@ -6,7 +6,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	if New("stub path").LocalPath != "stub path" {
+	if New("stub path").localPath != "stub path" {
 		t.Errorf("Expected New to set the path")
 	}
 }

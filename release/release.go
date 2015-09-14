@@ -11,7 +11,7 @@ import (
 // Release represents a specific Puppet
 // module release on disk.
 type Release struct {
-	LocalPath string
+	localPath string
 	Metadata  metadata.Metadata
 	File_uri  string
 	File_md5  string
@@ -20,13 +20,13 @@ type Release struct {
 // New instantiates a new release object
 // given the path to the tarball on disk.
 func New(path string) *Release {
-	return &Release{LocalPath: path}
+	return &Release{localPath: path}
 }
 
 // Tarball returns the path to the
 // release's tarball on disk.
 func (r *Release) Tarball() string {
-	return r.LocalPath
+	return r.localPath
 }
 
 // FromDisk populates the applicable
@@ -38,7 +38,7 @@ func (r *Release) FromDisk() (err error) {
 	r.Metadata = *m
 
 	// Get the tarball's MD5 checksum
-	raw, _ := ioutil.ReadFile(r.LocalPath)
+	raw, _ := ioutil.ReadFile(r.localPath)
 	checker := md5.New()
 	checker.Write(raw)
 	r.File_md5 = hex.EncodeToString(checker.Sum(nil))
