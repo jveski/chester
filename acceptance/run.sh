@@ -32,7 +32,7 @@ go run main.go -modulepath acceptance/v3/files &
 ###########################
 sudo chmod 777 /var/lib/nginx
 /usr/sbin/nginx -v
-/usr/sbin/nginx -p acceptance -c nginx.conf &
+/usr/sbin/nginx -p ./ -c acceptance/nginx.conf &
 
 
 ###########################
