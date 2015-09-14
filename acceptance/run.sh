@@ -36,4 +36,4 @@ go run main.go -modulepath acceptance/v3/files &
 # Attempt to install module from the API
 ###########################
 puppet --version
-puppet module install puppetlabs/apache --module_repository http://localhost:8080
+puppet module install puppetlabs/apache --module_repository http://localhost:8081
