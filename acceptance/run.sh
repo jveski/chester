@@ -4,6 +4,7 @@
 # Get a random module from the forge
 ###########################
 mkdir -p acceptance/v3/files
+curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.5.0.tar.gz" -o "acceptance/v3/files/puppetlabs-apache-1.5.0.tar.gz"
 curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.6.0.tar.gz" -o "acceptance/v3/files/puppetlabs-apache-1.6.0.tar.gz"
 
 
