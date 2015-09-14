@@ -30,7 +30,11 @@ func New() *API {
 
 // Listen starts the API server on the configured port.
 func (a *API) Listen() {
-	a.validateConfig()
+	err := a.validateConfig()
+
+	if err != nil {
+		a.Logger.Fatal(err.Error())
+	}
 
 	http.HandleFunc("/v3/releases", a.getReleases)
 
