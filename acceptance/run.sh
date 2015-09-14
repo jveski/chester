@@ -1,6 +1,12 @@
 #!/bin/bash
 
 ###########################
+# Install Puppet and Nginx
+###########################
+sudo apt-get install nginx -y
+sudo apt-get install puppet -y
+
+###########################
 # Get a random module from the forge
 ###########################
 mkdir -p acceptance/v3/files
