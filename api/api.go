@@ -34,19 +34,7 @@ func (a *API) Listen() {
 
 	http.HandleFunc("/v3/releases", a.getReleases)
 
-	log.Fatal(http.ListenAndServe(a.Binding(), nil))
-}
-
-// Binding returns the configured binding
-// if set, or logs a message and returns
-// :8080 otherwise.
-func (a *API) Binding() string {
-	if b := a.Config["binding"]; b == "" {
-		a.Logger.Print("No binding has been configured, defaulting to :8080")
-		return ":8080"
-	} else {
-		return b
-	}
+	log.Fatal(http.ListenAndServe(a.Config["binding"], nil))
 }
 
 func (a *API) validateConfig() error {
