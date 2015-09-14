@@ -9,3 +9,18 @@ go:
 script:
   - make test
   - "./acceptance/run.sh"
+  - make release
+
+deploy:
+  provider: releases
+  file:
+    - "dist/linux_amd64"
+    - "dist/linux_386"
+    - "dist/darwin_amd64"
+    - "dist/darwin_386"
+  on:
+    repo: jolshevski/chester
+    branch: master
+    tags: true
+  api_key:
+    secure: aN53WTSvd6QWQ+rvEpauxDbixHsEgCcr5v/xk0Qzs688wKNhYI7ND7V4MgEowOm6pkxcVqq7JVo7KRy1G4GCi4+H0QLgS+kPtiivs1+PAUq59UkN5+fiu57n6a5kiGlTJtRAnPFJO20WpwSNvRb5RyonRzzh/brgiLlxY2nUCjOYyQGJgNvd77ZqQHtuzY05F8A4ttRMletZ9VBKtpzN1cBGCxLkPN9u86pMt0I/ifh9sEpzNH5qeHzduUHDNVFzY4tTjeiXdyDc2ysS6rMwdyHGv8vFGwPefpwSlkvlbCCDQMbGODBdUFOxc7peVZ9eSG19/QBc2HekbZr48sWFk1fuZaY3UJRONCaqsa5/LL0fnRsaEcH2SWeHks0VsnPlEZaas8jOhmGeqT34gE/Xa9kCBnxiLdNX24i5K90M+WUu/IK1lg8PhVvOXTnAcLwCaFMUR0YY0ZXsm+8ynAUvxnSqjPvYGES57dFKt4JrBNyRwY4e58BklvVuGT4qyMhgJcyHTdjeCbe+FTjDtnc1qEmDAaA1SaiEmC0+Oq5dCWOtYp3YTFi412RmYW7UrNgoKGQwgYhmjnfGHeysXUi1b+u/HwQQUgNxzOC2Eyk6wHTtmjdT6S+4QUmAaJmj0ri7ZOKpUdJ2JW6T+x3QuIyeasB7nbm2too2TL8KCzD7ZH4=
