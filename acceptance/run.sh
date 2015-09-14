@@ -9,6 +9,7 @@ sudo apt-get update
 sudo apt-get install puppet -y
 sudo apt-get install nginx -y
 
+
 ###########################
 # Get a random module from the forge
 ###########################
@@ -41,6 +42,7 @@ sleep 5
 ###########################
 # Curl the endpoints
 ###########################
+jobs
 curl -v -s "http://localhost:8081/v3/release?module=puppetlabs-apache" 1> /dev/null
 curl -v -s "http://localhost:8081/v3/files/puppetlabs-apache-1.6.0.tar.gz" 1> /dev/null
 
