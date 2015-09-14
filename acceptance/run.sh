@@ -33,7 +33,20 @@ go run main.go -modulepath acceptance/v3/files &
 
 
 ###########################
+# Wait a bit for good measure
+###########################
+sleep 5
+
+
+###########################
 # Attempt to install module from the API
 ###########################
 puppet --version
 puppet module install puppetlabs/apache --module_repository http://localhost:8081
+
+
+###########################
+# Curl the endpoints
+###########################
+curl -v -s "http://localhost:8081/v3/release?module=puppetlabs-apache" 1> /dev/null
+curl -v -s "http://localhost:8081/v3/files/puppetlabs-apache-1.6.0.tar.gz" 1> /dev/null
