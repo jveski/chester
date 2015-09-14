@@ -41,6 +41,11 @@ func (a *API) validateConfig() error {
 	if a.Config["modulepath"] == "" {
 		return errors.New("Modulepath must be set before starting the API server")
 	}
+
+	if a.Config["fileurl"] == "" {
+		return errors.New("Fileurl must be set before starting the API server")
+	}
+
 	return nil
 }
 
