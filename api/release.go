@@ -3,50 +3,36 @@ package api
 import (
 	"encoding/json"
 	"github.com/jolshevski/chester/release"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
-	"strings"
 )
 
-func (a *API) getRelease(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	a.Logger.Printf("Request for %v received from %v", r.RequestURI, r.Host)
-	w.Header().Set("Content-Type", "application/json")
+type releaseReponse struct {
+	Pagination struct{} //No pagination for now
+	Results    []*release.Release
+}
 
-	// Parse the module's slug and version
-	slug, ver := parseModuleName(ps.ByName("module"))
+func (a *API) getReleases(w http.ResponseWriter, r *http.Request) {
+	response := &releaseReponse{}
+	factory := release.NewFactory(a.Config["modulepath"])
 
-	// Instantiate the release
-	result := release.New(slug, ver, a.Config["modulepath"])
+	if q := r.URL.Query()["module"]; q != nil {
+		var err error
 
-	// Return 404 if the release was not found
-	if result == nil {
-		a.Logger.Printf("%v-%v failed to load from disk", slug, ver)
-		http.NotFound(w, r)
+		a.Logger.Printf("Querying for all releases of %v", q[0])
+		response.Results, err = factory.AllForModule(q[0])
+
+		if err != nil {
+			a.Logger.Printf("Error encountered while querying for all releases of %v: %v", q, err.Error())
+			a.returnError(err.Error(), w)
+			return
+		}
+
+	} else {
+		a.returnError("Invalid query", w)
 		return
 	}
 
-	// If we've made it this far, load the release
-	// from disk and return it as JSON
-	if err := result.FromDisk(); err != nil {
-		a.Logger.Printf("An error occurred while loading %v-%v from disk: %v", slug, ver, err)
-		w.WriteHeader(500)
-	} else {
-		a.Logger.Printf("%v-%v was successfully loaded from disk", slug, ver)
-	}
-
-	body, _ := json.Marshal(result)
+	body, _ := json.Marshal(response)
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(body)
-}
-
-// parseModuleName takes a string with
-// dash-delimited author, module, and
-// versions, and returns a parsed user
-// / module name slug, and version.
-func parseModuleName(in string) (slug string, version string) {
-	split := strings.Split(in, "-")
-
-	slug = split[0] + "-" + split[1]
-	version = split[2]
-
-	return
 }

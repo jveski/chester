@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"github.com/jolshevski/chester/metadata"
 	"io/ioutil"
-	"os"
 )
 
 // Release represents a specific Puppet
@@ -18,19 +17,9 @@ type Release struct {
 }
 
 // New instantiates a new release object
-// given the module's name, version and
-// the path containing module tarballs.
-func New(name string, version string, modulepath string) *Release {
-	file := modulepath + "/" + name + "-" + version + ".tar.gz"
-
-	if _, err := os.Stat(file); os.IsNotExist(err) {
-		return nil
-	}
-
-	return &Release{
-		LocalPath: file,
-		Metadata:  metadata.Metadata{Name: name, Version: version},
-	}
+// given the path to the tarball on disk.
+func New(path string) *Release {
+	return &Release{LocalPath: path}
 }
 
 // Tarball returns the path to the
