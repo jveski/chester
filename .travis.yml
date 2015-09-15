@@ -35,7 +35,8 @@ rvm:
 
 script:
 # Download the build artifact
-  - 'curl "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o subject'
+  - 'curl -L "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o subject'
+  - 'chmod +x subject'
 
 # Download modules
   - 'mkdir -p data/v3/files'
@@ -45,7 +46,7 @@ script:
   - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-concat-1.2.4.tar.gz" -o "data/v3/files/puppetlabs-concat-1.2.4.tar.gz"'
 
 # Start chester and apache
-  - 'subject -modulepath modules &'
+  - './subject -modulepath modules &'
   - 'apache2 -d ./ -DFOREGROUND &'
 
 # Attempt to install the module
