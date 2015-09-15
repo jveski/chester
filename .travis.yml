@@ -1,13 +1,15 @@
 language: go
-sudo: required
+sudo: false
 
 go:
   - 1.5
 
 script:
   - make test
-  - "./acceptance/run.sh"
-  - make release
+
+before_deploy:
+  - go get github.com/mitchellh/gox
+  - 'gox -output "dist/{{.OS}}_{{.Arch}}"'
 
 deploy:
   provider: releases
