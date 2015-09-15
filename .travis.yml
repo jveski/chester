@@ -34,8 +34,19 @@ rvm:
   - 1.9.3
 
 script:
-  - 'mkdir modules'
+# Download the build artifact
   - 'curl "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o subject'
-  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.9.0.tar.gz" -o "modules/puppetlabs-stdlib-4.9.0.tar.gz"'
+
+# Download modules
+  - 'mkdir -p data/v3/files'
+  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.9.0.tar.gz" -o "data/v3/files/puppetlabs-stdlib-4.9.0.tar.gz"'
+  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.6.0.tar.gz" -o "data/v3/files/puppetlabs-apache-1.6.0.tar.gz"'
+  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-apache-1.5.0.tar.gz" -o "data/v3/files/puppetlabs-apache-1.5.0.tar.gz"'
+  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-concat-1.2.4.tar.gz" -o "data/v3/files/puppetlabs-concat-1.2.4.tar.gz"'
+
+# Start chester and apache
   - 'subject -modulepath modules &'
-  - 'apache2'
+  - 'apache2 -d ./ -DFOREGROUND'
+
+# Attempt to install the module
+  - 'puppet module install puppetlabs-apache --module_repository http://localhost:8081 --trace'
