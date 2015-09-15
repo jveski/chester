@@ -22,7 +22,7 @@ env:
 addons:
   apt:
     packages:
-      - apache2:2.2.22-1ubuntu1.10
+      - apache2
 
 rvm:
   - 2.2.3
