@@ -30,6 +30,25 @@ Usage of ./chester:
         Directory containing module release tarballs to serve. Required.
 ```
 
+## Compatibility
+Chester is tested on the following versions of Puppet and Ruby. Check the acceptance branch travis builds for details.
+
+### Puppet
+  - 4.2.2
+  - 4.2.1
+  - 4.2.0
+  - 4.1.0
+  - 4.0.0
+
+### Ruby
+  - 2.2.3
+  - 2.2.2
+  - 2.2.1
+  - 2.2.0
+  - 2.1.0
+  - 2.0.0
+  - 1.9.3
+
 ## Contributing
 If you find Chester useful, feel free to contribute enhancements / bug fixes.
 
