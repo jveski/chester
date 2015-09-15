@@ -46,7 +46,7 @@ script:
 
 # Start chester and apache
   - 'subject -modulepath modules &'
-  - 'apache2 -d ./ -DFOREGROUND'
+  - 'apache2 -d ./ -DFOREGROUND &'
 
 # Attempt to install the module
   - 'puppet module install puppetlabs-apache --module_repository http://localhost:8081 --trace'
