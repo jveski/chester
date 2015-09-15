@@ -1,0 +1,41 @@
+language: ruby
+sudo: false
+
+env:
+  - PUPPET_VERSION=4.2.2
+  - PUPPET_VERSION=4.2.1
+  - PUPPET_VERSION=4.2.0
+  - PUPPET_VERSION=4.1.0
+  - PUPPET_VERSION=4.0.0
+  - PUPPET_VERSION=3.8.2
+  - PUPPET_VERSION=3.8.1
+  - PUPPET_VERSION=3.7.5
+  - PUPPET_VERSION=3.7.4
+  - PUPPET_VERSION=3.7.3
+  - PUPPET_VERSION=3.7.2
+  - PUPPET_VERSION=3.7.1
+  - PUPPET_VERSION=3.7.0
+  - PUPPET_VERSION=3.6.2
+  - PUPPET_VERSION=3.6.1
+  - PUPPET_VERSION=3.6.0
+
+addons:
+  apt:
+    packages:
+      - apache2
+
+rvm:
+  - 2.2.3
+  - 2.2.2
+  - 2.2.1
+  - 2.2.0
+  - 2.1.0
+  - 2.0.0
+  - 1.9.3
+
+script:
+  - 'mkdir modules'
+  - 'curl "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o subject'
+  - 'curl "https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.9.0.tar.gz" -o "modules/puppetlabs-stdlib-4.9.0.tar.gz"'
+  - 'subject -modulepath modules &'
+  - 'apache2'
