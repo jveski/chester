@@ -15,7 +15,7 @@ func TestFromDisk(t *testing.T) {
 	subject := New("../test_fixtures/stub-module-1.2.3.tar.gz")
 	subject.FromDisk()
 
-	if subject.File_md5 != "70ec46a9b9eb0a2d4983ec4ef834b14f" {
+	if subject.File_md5 != "37a31eea4a43669c82cd216209cb395e" {
 		t.Errorf("Expected FromDisk to return the correct tarball checksum")
 	}
 }

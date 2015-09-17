@@ -55,7 +55,7 @@ func TestValidModule(t *testing.T) {
 	theServer := httptest.NewRecorder()
 	app.GetReleases(theServer, req)
 
-	if theServer.Body.String() != "{\"pagination\":{},\"results\":[{\"metadata\":{\"name\":\"stubuser-stubmodule\",\"version\":\"1.2.3\",\"dependencies\":[]},\"file_uri\":\"/stub/filepaath/stubuser-stubmodule-1.2.3.tar.gz\",\"file_md5\":\"70ec46a9b9eb0a2d4983ec4ef834b14f\"}]}" {
+	if theServer.Body.String() != "{\"pagination\":{},\"results\":[{\"metadata\":{\"name\":\"stubuser-stubmodule\",\"version\":\"1.2.3\",\"dependencies\":[{\"name\":\"stub/dep1\",\"version_requirement\":\"stub_version1\"},{\"name\":\"stub/dep2\",\"version_requirement\":\"stub_version2\"}]},\"file_uri\":\"/stub/filepaath/stubuser-stubmodule-1.2.3.tar.gz\",\"file_md5\":\"37a31eea4a43669c82cd216209cb395e\"}]}" {
 		t.Fatal("API.GetReleases returned ", theServer.Body, " wanted an empty array")
 	}
 
