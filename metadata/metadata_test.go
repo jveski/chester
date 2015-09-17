@@ -26,7 +26,7 @@ func TestFromRelease(t *testing.T) {
 		t.Errorf("Expected FromTarball() to load the correct module dependencies from metadata.json")
 	}
 
-	if subject.Dependencies[0].Version_requirement != "stub_version1" {
+	if subject.Dependencies[0].VersionRequirement != "stub_version1" {
 		t.Errorf("Expected FromTarball() to load the correct module dependencies from metadata.json")
 	}
 
@@ -34,7 +34,7 @@ func TestFromRelease(t *testing.T) {
 		t.Errorf("Expected FromTarball() to load the correct module dependencies from metadata.json")
 	}
 
-	if subject.Dependencies[1].Version_requirement != "stub_version2" {
+	if subject.Dependencies[1].VersionRequirement != "stub_version2" {
 		t.Errorf("Expected FromTarball() to load the correct module dependencies from metadata.json")
 	}
 }

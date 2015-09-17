@@ -13,8 +13,8 @@ import (
 type Release struct {
 	localPath string
 	Metadata  metadata.Metadata `json:"metadata"`
-	File_uri  string            `json:"file_uri"`
-	File_md5  string            `json:"file_md5"`
+	FileUri   string            `json:"file_uri"`
+	FileMd5   string            `json:"file_md5"`
 }
 
 // New instantiates a new release object
@@ -41,7 +41,7 @@ func (r *Release) FromDisk() (err error) {
 	raw, _ := ioutil.ReadFile(r.localPath)
 	checker := md5.New()
 	checker.Write(raw)
-	r.File_md5 = hex.EncodeToString(checker.Sum(nil))
+	r.FileMd5 = hex.EncodeToString(checker.Sum(nil))
 
 	return
 }

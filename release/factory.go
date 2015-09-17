@@ -35,7 +35,7 @@ func (f *Factory) AllForModule(slug string) (releases []*Release, err error) {
 	for _, tarball := range tarballs {
 		release := New(tarball)
 		release.FromDisk()
-		release.File_uri = f.fileurl + "/" + release.Slug() + ".tar.gz"
+		release.FileUri = f.fileurl + "/" + release.Slug() + ".tar.gz"
 		releases = append(releases, release)
 	}
 

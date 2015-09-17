@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-// Metadata is the parent object contained within
+// Metadata is the top-level object contained within
 // a Puppet module's metadata.json.
 type Metadata struct {
 	Name         string       `json:"name"`
@@ -19,12 +19,14 @@ type Metadata struct {
 }
 
 // Dependency represents an entry under the
-// dependencies key of the Metadata type.
+// dependencies field of the Metadata type.
 type Dependency struct {
-	Name                string `json:"name"`
-	Version_requirement string `json:"version_requirement"`
+	Name               string `json:"name"`
+	VersionRequirement string `json:"version_requirement"`
 }
 
+// release models a Puppet module object,
+// either a specific release or a module.
 type release interface {
 	Tarball() string
 }
@@ -32,6 +34,7 @@ type release interface {
 // FromRelease takes a release object and returns
 // an instance of Metadata containing the values
 // found in the module's metadata.json.
+//
 // An error will be returned if an issue is encountered
 // while loading the file, but an empty Metadata
 // object will be returned if no metadata.json
