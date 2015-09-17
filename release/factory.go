@@ -39,5 +39,9 @@ func (f *Factory) AllForModule(slug string) (releases []*Release, err error) {
 		releases = append(releases, release)
 	}
 
-	return []*Release{}, nil
+	if releases == nil {
+		releases = []*Release{}
+	}
+
+	return
 }
