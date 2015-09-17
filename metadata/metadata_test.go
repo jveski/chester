@@ -7,7 +7,7 @@ import (
 type stubRelease struct{}
 
 func (s *stubRelease) Tarball() string {
-	return "../test_fixtures/module-1.2.3.tar.gz"
+	return "../test_fixtures/stub-module-1.2.3.tar.gz"
 }
 
 func TestFromRelease(t *testing.T) {
