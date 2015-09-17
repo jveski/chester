@@ -24,7 +24,7 @@ rvm:
 
 script:
 # Download the build artifact
-  - 'curl -L "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o subject'
+  - 'curl -L "https://github.com/jolshevski/chester/releases/download/1.0.1/linux_amd64" -o subject'
   - 'chmod +x subject'
 
 # Download modules
