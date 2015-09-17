@@ -8,13 +8,13 @@ Take a directory full of Puppet module tarballs, serve it with nginx (or whateve
 ## Installation
 ### Linux
 ```shell
-sudo curl -L "https://github.com/jolshevski/chester/releases/download/1.0.0/darwin_amd64" -o /usr/bin/chester
+sudo curl -L "https://github.com/jolshevski/chester/releases/download/1.0.1/darwin_amd64" -o /usr/bin/chester
 sudo chmod +x /usr/bin/chester
 ```
 
 ### Mac
 ```shell
-sudo curl -L "https://github.com/jolshevski/chester/releases/download/1.0.0/linux_amd64" -o /usr/bin/chester
+sudo curl -L "https://github.com/jolshevski/chester/releases/download/1.0.1/linux_amd64" -o /usr/bin/chester
 sudo chmod +x /usr/bin/chester
 ```
 
