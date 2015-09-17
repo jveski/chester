@@ -11,7 +11,7 @@ type releaseReponse struct {
 	Results    []*release.Release `json:"results"`
 }
 
-func (a *API) getReleases(w http.ResponseWriter, r *http.Request) {
+func (a *API) GetReleases(w http.ResponseWriter, r *http.Request) {
 	response := &releaseReponse{}
 	factory := release.NewFactory(a.Config["modulepath"], a.Config["fileurl"])
 

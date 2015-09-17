@@ -36,7 +36,7 @@ func (a *API) Listen() {
 		a.Logger.Fatal(err.Error())
 	}
 
-	http.HandleFunc("/v3/releases", a.getReleases)
+	http.HandleFunc("/v3/releases", a.GetReleases)
 
 	a.Logger.Fatal(http.ListenAndServe(a.Config["binding"], nil))
 }
